@@ -1,6 +1,6 @@
 Summary: Postfix policyd to combine complex restrictions in a ruleset
 Name: postfwd
-Version: 1.34
+Version: 1.35
 Release: 1%{?dist}
 License: BSD
 Group: System Environment/Daemons
@@ -93,5 +93,8 @@ fi
 
 
 %changelog
+* Wed Jul 09 2014 Marc Ponschab <marc@ponschab.de> - 1.35-1
+- update to latest upstream version
+
 * Sat Apr 20 2013 Marc Ponschab <marc@ponschab.de> 1.34-1
 - initial release 1.34
