@@ -1,0 +1,23 @@
+To make use of postfwd, edit your configuration files:
+
+Open your main.cf (usually located at /etc/postfix) and find or add a line starting with:
+
+	smtpd_recipient_restrictions = ... 
+
+To place the postfwd check here, modify this as follows:
+
+	# note the leading whitespaces from the 2nd line!
+	smtpd_recipient_restrictions = permit_mynetworks,	# recommended
+		...,						# optional
+		reject_unauth_destination,			# recommended
+		check_policy_service inet:127.0.0.1:10040,	# **postfwd integration**
+		...						# optional 
+
+Please note that for some checks (like the 'size' attribute) postfwd has to be integrated
+at another level of the smtp transaction (smtpd_end_of_data_restrictions). More information 
+on that can be found in the postfix documentation. 
+
+And don't forget to activate the service on startup:
+
+service postfwd start
+chkconfig postfwd on

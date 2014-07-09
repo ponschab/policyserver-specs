@@ -1,0 +1,8 @@
+# reject @domain.local if request comes from outside 10.0.0.0/8 network
+#id=RULE-01 ;  sender_domain=domain.local ;  client_address=!!(10.0.0.0/8) ;  action=REJECT not allowed
+
+# reject if sender equals recipient
+#id=RULE-02 ;  sender==$$recipient ;  action=REJECT not allowed
+
+# check some rbls and reject, if listed on >= 2 of them
+#id=RULE-03 ;  rbl=zen.spamhaus.org,bl.spamcop.net,ix.dnsbl.manitu.net ;  rblcount>=2 ;  action=REJECT not allowed 

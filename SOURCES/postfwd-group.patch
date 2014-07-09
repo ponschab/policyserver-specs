@@ -1,0 +1,13 @@
+--- sbin/postfwd.ORIG	2013-04-10 22:06:31.796652269 +0200
++++ sbin/postfwd	2013-04-10 22:08:04.870198085 +0200
+@@ -50,8 +50,8 @@ our($def_net_interface)		= "127.0.0.1";
+ our($def_net_port)		= "10040";
+ our($def_net_proto)		= "tcp";
+ our($def_net_umask)		= "0111";
+-our($def_net_user)		= "nobody";
+-our($def_net_group)		= "nobody";
++our($def_net_user)		= "postfwd";
++our($def_net_group)		= "postfwd";
+ our($def_dns_queuesize)		= "300";
+ our($def_dns_retries)		= "3";
+ our($def_dns_timeout)		= "14";

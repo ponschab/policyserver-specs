@@ -1,0 +1,13 @@
+--- sbin/postfwd2.ORIG	2012-11-17 15:59:17.000000000 +0100
++++ sbin/postfwd2	2013-04-20 23:35:28.028910125 +0200
+@@ -52,8 +52,8 @@ my $nounixsock	= ($^O eq 'solaris');
+ # program settings
+ our %postfwd_settings = (
+ 	base => {
+-		user             => 'nobody',
+-		group            => 'nobody',
++		user             => 'postfwd',
++		group            => 'postfwd',
+ 		#setsid           => 1,
+ 		log_level        => 2,
+ 		log_file         => 'Sys::Syslog',

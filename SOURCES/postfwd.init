@@ -1,0 +1,112 @@
+#!/bin/sh
+#
+# postfwd     Postfix policyd to combine complex restrictions in a ruleset
+#
+# chkconfig:   - 79 31
+# description: Postfix policyd to combine complex restrictions in a ruleset
+
+### BEGIN INIT INFO
+# Provides: postfwd
+# Required-Start: $local_fs $network
+# Required-Stop: $local_fs $network
+# Should-Start: 
+# Should-Stop: 
+# Default-Start: 
+# Default-Stop: 0 1 2 3 4 5 6
+# Short-Description: Postfix policyd to combine complex restrictions in a ruleset
+# Description:       Postfwd is written in perl to combine complex postfix restrictions in a
+#                    ruleset similar to those of the most firewalls. The program uses the postfix
+#                    policy delegation protocol to control access to the mail system before a
+#                    message has been accepted. It allows you to choose an action (e.g. reject, dunno)
+#                    for a combination of several smtp parameters (like sender and recipient address,
+#                    size or the client's TLS fingerprint).
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+[ -f /etc/sysconfig/postfwd ] && . /etc/sysconfig/postfwd
+
+exec="${POSTFWD-/usr/sbin/postfwd}"
+prog="$(basename $exec)"
+options="-f /etc/postfwd.cf"
+
+lockfile=/var/lock/subsys/$prog
+
+start() {
+    [ -x $exec ] || exit 5
+    echo -n $"Starting $prog: "
+    daemon $exec -d $options
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && touch $lockfile
+    return $retval
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    retval=$?
+    echo
+    [ $retval -eq 0 ] && rm -f $lockfile
+    return $retval
+}
+
+restart() {
+    stop
+    start
+}
+
+reload() {
+    echo -n $"Reloading $prog: "
+    killproc $prog -HUP
+    retval=$?
+    echo
+    return $retval
+}
+
+force_reload() {
+    restart
+}
+
+rh_status() {
+    status $prog
+}
+
+rh_status_q() {
+    rh_status &>/dev/null
+}
+
+
+case "$1" in
+    start)
+        rh_status_q && exit 0
+        $1
+        ;;
+    stop)
+        rh_status_q || exit 0
+        $1
+        ;;
+    restart)
+        $1
+        ;;
+    reload)
+        rh_status_q || exit 7
+        $1
+        ;;
+    force-reload)
+        force_reload
+        ;;
+    status)
+        rh_status
+        ;;
+    condrestart|try-restart)
+        rh_status_q || exit 0
+        restart
+        ;;
+    *)
+        echo $"Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload}"
+        exit 2
+esac
+exit $?
+

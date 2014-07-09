@@ -1,0 +1,12 @@
+# Configuration file for the postfwd service.
+#
+# As you might have noticed, there are two different versions of postfwd
+# available - postfwd(1) and postfwd2. Which version fits best for you 
+# depends on your setup. Both versions use the same ruleset parser*. 
+# They also share the basic command line arguments (use both with --help 
+# for details). This allows to switch easily between them. 
+#
+# See also:
+# /usr/share/doc/postfwd-1.34/versions.html
+#
+#POSTFWD=/usr/sbin/postfwd2
