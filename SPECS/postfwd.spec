@@ -1,7 +1,7 @@
 Summary: Postfix policyd to combine complex restrictions in a ruleset
 Name: postfwd
 Version: 1.35
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: BSD
 Group: System Environment/Daemons
 URL: http://postfwd.org/
@@ -93,6 +93,9 @@ fi
 
 
 %changelog
+* Thu Jul 10 2014 Marc Ponschab <marc@ponschab.de> - 1.35-3
+- add initscript actions showconfig and dumpcache
+
 * Wed Jul 09 2014 Marc Ponschab <marc@ponschab.de> - 1.35-2
 - pass modified command-line arguments from sysconfig
 

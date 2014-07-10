@@ -77,6 +77,14 @@ rh_status_q() {
     rh_status &>/dev/null
 }
 
+showconfig() {
+    $exec -d $options -C
+}
+
+dumpcache() {
+    $exec -d $options -vv --dumpcache
+}
+
 
 case "$1" in
     start)
@@ -104,8 +112,14 @@ case "$1" in
         rh_status_q || exit 0
         restart
         ;;
+    showconfig)
+        showconfig && exit 0
+        ;;
+    dumpcache)
+        dumpcache && exit 0
+        ;;
     *)
-        echo $"Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload}"
+        echo $"Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload|showconfig|dumpcache}"
         exit 2
 esac
 exit $?
