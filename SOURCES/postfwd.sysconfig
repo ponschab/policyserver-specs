@@ -7,6 +7,13 @@
 # for details). This allows to switch easily between them. 
 #
 # See also:
-# /usr/share/doc/postfwd-1.34/versions.html
+# /usr/share/doc/postfwd-*/versions.html
 #
 #POSTFWD=/usr/sbin/postfwd2
+
+# OPTIONS is used to pass command-line arguments to postfwd
+#
+# Default:
+#OPTIONS="-f /etc/postfwd.cf"
+# Testing, always returns "dunno":
+#OPTIONS="-f /etc/postfwd.cf -t"

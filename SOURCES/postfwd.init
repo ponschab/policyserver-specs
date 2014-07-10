@@ -29,7 +29,7 @@
 
 exec="${POSTFWD-/usr/sbin/postfwd}"
 prog="$(basename $exec)"
-options="-f /etc/postfwd.cf"
+options="${OPTIONS--f /etc/postfwd.cf}"
 
 lockfile=/var/lock/subsys/$prog
 
